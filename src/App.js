@@ -3,15 +3,32 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import './App.css';
-import NavLink from './components/NavLink';
+import Navigation from './components/Navigation';
+import Rockets from './components/Rockets';
+import Missions from './components/Missions';
+import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <NavLink />,
+    element: <Navigation />,
+    children: [
+      {
+        index: '/profile',
+        element: <Profile />,
+      },
+      {
+        path: '/rockets',
+        element: <Rockets />,
+      },
+      {
+        path: '/missions',
+        element: <Missions />,
+      },
+    ],
   },
-
 ]);
+
 const App = () => (
   <div className="App">
     <RouterProvider router={router} />

@@ -16,3 +16,38 @@
 .App-link {
   color: #61dafb;
 }
+
+header,
+.logo-divider,
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid gray;
+}
+
+.logo {
+  width: 10vw;
+  height: 10vh;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 0 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
