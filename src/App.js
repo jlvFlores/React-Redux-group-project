@@ -1,23 +1,20 @@
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import NavLink from './components/NavLink';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <NavLink />,
+  },
+  
+]);
+const App = () => (
+  <div className="App">
+    <RouterProvider router={router} />
+  </div>
+);
 
 export default App;
