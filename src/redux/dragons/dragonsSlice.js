@@ -35,13 +35,25 @@ const initialState = {
  *  Define reducer for dragons
  *  =================================================== */
 const dragonsSlice = createSlice({
-  FETCH_DRAGONS,
+  name: FETCH_DRAGONS,
   initialState,
-  extraReducers: {},
+  extraReducers: (builder) => builder
+    .addCase(
+      fetchDragons.pending,
+      (state) => ({
+        ...state,
+        isLoading: true,
+        error: null,
+      }),
+    ),
 });
+
+/** ===================================================
+ *  Export fetchDragons action
+ *  =================================================== */
+export { fetchDragons };
 
 /** ===================================================
  *  Export dragons reducer as default
  *  =================================================== */
-const { reducer } = dragonsSlice.reducer;
-export default reducer;
+export default dragonsSlice.reducer;
