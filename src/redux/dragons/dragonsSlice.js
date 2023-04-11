@@ -14,7 +14,7 @@ const fetchDragons = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const resp = await axios.get('https://api.spacexdata.com/v4/dragons');
-      console.log(resp);
+      console.log(resp.data);
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -44,6 +44,24 @@ const dragonsSlice = createSlice({
         ...state,
         isLoading: true,
         error: null,
+      }),
+    )
+    .addCase(
+      fetchDragons.fulfilled,
+      (state, { payload }) => {
+        const fetchedDragons = payload.map((dragon) => console.log(dragon));
+        return ({
+          ...state,
+          available: fetchedDragons,
+          isLoading: false,
+        });
+      },
+    )
+    .addCase(
+      fetchDragons.rejected,
+      (state) => ({
+        ...state,
+        isLoading: false,
       }),
     ),
 });
