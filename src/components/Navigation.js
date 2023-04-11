@@ -30,6 +30,11 @@ const Navigation = () => {
                 Missions
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/dragons">
+                Dragons
+              </NavLink>
+            </li>
             <li>|</li>
             <li>
               <NavLink to="/profile">
