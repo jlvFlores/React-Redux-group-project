@@ -15,12 +15,12 @@ const router = createBrowserRouter([
     element: <Navigation />,
     children: [
       {
-        index: '/profile',
-        element: <Profile />,
+        index: '/rockets',
+        element: <Rockets />,
       },
       {
-        path: '/rockets',
-        element: <Rockets />,
+        path: '/profile',
+        element: <Profile />,
       },
       {
         path: '/missions',
