@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import Rocket from './Rocket';
 
 const Rockets = () => {
   const { rockets, isLoading } = useSelector((store) => store.rockets);
@@ -12,18 +13,14 @@ const Rockets = () => {
   return (
     <section className="rockets-section">
       {rockets.map((rocket) => (
-        <div className="rocket-card" key={rocket.rocket_id}>
-          <img
-            className="rocket-image"
-            src={rocket.flickr_images[0]}
-            alt={rocket.rocket_name}
-          />
-          <div className="rocket-info">
-            <h2>{rocket.rocket_name}</h2>
-            <p>{rocket.description}</p>
-            <button className="reserve-rocket-btn" type="button">Reserve Rocket</button>
-          </div>
-        </div>
+        <Rocket
+          key={rocket.rocket_id}
+          id={rocket.id}
+          rocketName={rocket.rocket_name}
+          description={rocket.description}
+          image={rocket.flickr_images[0]}
+          reserved={rocket.reserved}
+        />
       ))}
     </section>
   );
