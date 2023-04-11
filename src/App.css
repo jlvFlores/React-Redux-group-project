@@ -78,7 +78,7 @@ h2 {
 .tag {
   background-color: #18a2b8;
   border-radius: 5px;
-  color: #ffffff;
+  color: #fff;
 }
 
 .btn {
@@ -89,11 +89,11 @@ h2 {
 .reserve-rocket-btn {
   background-color: #007bff;
   border: none;
-  color: #ffffff;
+  color: #fff;
 }
 
 .cancel-reserve-rocket-btn {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid gray;
   color: gray;
 }
