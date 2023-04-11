@@ -75,6 +75,25 @@ h2 {
   margin: 0;
 }
 
-.reserve-rocket-btn {
+.tag {
+  background-color: #18a2b8;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.btn {
   padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.reserve-rocket-btn {
+  background-color: #007bff;
+  border: none;
+  color: #ffffff;
+}
+
+.cancel-reserve-rocket-btn {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  color: gray;
 }
