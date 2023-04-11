@@ -79,6 +79,20 @@ const dragonsSlice = createSlice({
 });
 
 /** ===================================================
+ *  Export Selectors for dragons
+ *  =================================================== */
+export const selectAllDragonsIds = (store) => (
+  store.dragons.available
+    .map((dragon) => (dragon.id))
+);
+export const selectDragonById = (store, dragonId) => (
+  store.dragons
+    .filter((dragon) => dragon.id === dragonId)
+);
+export const selectIsLoading = (store) => (store.dragons.isLoading);
+export const selectError = (store) => (store.dragons.error);
+
+/** ===================================================
  *  Export fetchDragons action
  *  =================================================== */
 export { fetchDragons };
