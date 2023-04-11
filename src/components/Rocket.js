@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { reserveRocket } from '../store/rockets/rocketsSlice';
+import { reserveRocket } from '../redux/rockets/rocketsSlice';
 
 const Rocket = ({
   id, rocketName, description, image, reserved,
