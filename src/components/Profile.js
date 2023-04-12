@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { selectReservedDragons } from '../redux/dragons/dragonsSlice';
 
 const Profile = () => {
   const { rockets } = useSelector((store) => store.rockets);
+  const dragons = useSelector(selectReservedDragons);
 
   return (
     <>
@@ -20,7 +22,9 @@ const Profile = () => {
       </section>
       <section className="my-dragons">
         <h3>My Dragons</h3>
-        <div />
+        <div>
+          { dragons.map((dragon) => (<div key={dragon.id}>{dragon.name}</div>)) }
+        </div>
       </section>
     </>
   );

@@ -203,6 +203,9 @@ export const selectDragonById = (store, dragonId) => (
   store.dragons.available
     .filter((dragon) => dragon.id === dragonId)
 );
+export const selectReservedDragons = (store) => (store.dragons
+  .available.filter((dragon) => dragon.reserved)
+);
 export const selectIsIdle = ({ dragons: { status: { type } } }) => (type === 'idle');
 export const selectIsLoading = ({ dragons: { status: { type } } }) => (type === 'loading');
 export const selectIsBooking = ({ dragons: { status: { type, id } } }, dragonId) => (
