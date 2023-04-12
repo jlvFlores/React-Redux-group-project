@@ -50,13 +50,13 @@ const dragonsSlice = createSlice({
       (state, { payload }) => {
         const fetchedDragons = payload.map((dragon) => {
           const {
-            id, name, type, flickr_images: [image],
+            id, name, description, flickr_images: [image],
           } = dragon;
 
           return ({
             id,
             name,
-            type,
+            description,
             image,
           });
         });
@@ -86,7 +86,7 @@ export const selectAllDragonsIds = (store) => (
     .map((dragon) => (dragon.id))
 );
 export const selectDragonById = (store, dragonId) => (
-  store.dragons
+  store.dragons.available
     .filter((dragon) => dragon.id === dragonId)
 );
 export const selectIsLoading = (store) => (store.dragons.isLoading);
