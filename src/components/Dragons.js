@@ -1,10 +1,15 @@
-import { useSelector } from 'react-redux';
-import { selectAllDragonsIds, selectError, selectIsLoading } from '../redux/dragons/dragonsSlice';
+import { shallowEqual, useSelector } from 'react-redux';
+import {
+  selectAllDragonsIds,
+  selectError,
+  selectIsLoading,
+} from '../redux/dragons/dragonsSlice';
+import Dragon from './Dragon';
 
 const Dragons = () => {
-  const dragonsIds = useSelector(selectAllDragonsIds);
-  const dragonsIsLoading = useSelector(selectIsLoading);
-  const errorOcurred = useSelector(selectError);
+  const dragonsIds = useSelector(selectAllDragonsIds, shallowEqual);
+  const dragonsIsLoading = useSelector(selectIsLoading, shallowEqual);
+  const errorOcurred = useSelector(selectError, shallowEqual);
 
   if (dragonsIsLoading) {
     return <div><p>Loading Dragons...</p></div>;
@@ -12,7 +17,12 @@ const Dragons = () => {
 
   return (
     <section className="dragons-section">
-      { dragonsIds.map((dragonId) => <article key={dragonId}>{dragonId}</article>)}
+      { dragonsIds.map((dragonId) => (
+        <Dragon
+          key={dragonId}
+          id={dragonId}
+        />
+      ))}
       { errorOcurred && (
       <div>
         <h3>Something went wrong.</h3>
