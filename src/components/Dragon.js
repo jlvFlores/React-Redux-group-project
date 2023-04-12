@@ -7,13 +7,13 @@ const Dragon = ({ id }) => {
   const { name, description, image } = dragon;
 
   return (
-    <article className="rocket-card">
+    <article className="dragon-card">
       <img
-        className="rocket-image"
+        className="dragon-image"
         src={image}
         alt={name}
       />
-      <div className="rocket-info">
+      <div className="dragon-info">
         <h2>{name}</h2>
         <p>{description}</p>
       </div>

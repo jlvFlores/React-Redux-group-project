@@ -52,22 +52,26 @@ a {
   text-underline-offset: 5px;
 }
 
-.rockets-section {
+.rockets-section,
+.dragons-section {
   padding: 0 2rem;
 }
 
-.rocket-card {
+.rocket-card,
+.dragon-card {
   display: flex;
   column-gap: 1rem;
   margin: 1rem 0;
 }
 
-.rocket-image {
+.rocket-image,
+.dragon-image {
   max-height: 250px;
   aspect-ratio: 4 / 3;
 }
 
-.rocket-info {
+.rocket-info,
+.dragon-info {
   text-align: start;
 }
 
