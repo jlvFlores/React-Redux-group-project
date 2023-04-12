@@ -85,6 +85,20 @@ h2 {
   color: #fff;
 }
 
+.dragon-info h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dragon-info .tag {
+  display: inline-block;
+  font-weight: normal;
+  font-size: medium;
+  padding: 0.15rem 0.4rem;
+  text-align: center;
+}
+
 .btn {
   padding: 0.5rem;
   min-inline-size: 8.5rem;

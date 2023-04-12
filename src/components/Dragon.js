@@ -36,7 +36,10 @@ const Dragon = ({ id }) => {
         alt={name}
       />
       <div className="dragon-info">
-        <h2>{name}</h2>
+        <h2>
+          {name}
+          {reserved && (<span className="tag">Reserved</span>)}
+        </h2>
         <p>{description}</p>
         {
           !isTarget ? (
