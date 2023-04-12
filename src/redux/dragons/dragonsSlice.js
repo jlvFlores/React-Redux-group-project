@@ -5,6 +5,8 @@ import axios from 'axios';
  *  Define action type
  *  =================================================== */
 const FETCH_DRAGONS = 'dragons/fetchDragons';
+const RESERVE_DRAGON = 'dragons/reserveDragon';
+const CANCEL_RESERVED_DRAGON = 'dragons/cancelReservedDragon';
 
 /** ===================================================
  *  Define asyncThunk for dragons
@@ -22,11 +24,53 @@ const fetchDragons = createAsyncThunk(
 );
 
 /** ===================================================
+ *  Helper to check if a dragon exists
+ *  =================================================== */
+const dragonExists = (dragonId, thunkAPI) => new Promise((resolve, reject) => {
+  const { dragons: { available: availableDragons } } = thunkAPI.getState();
+  const [foundDragon] = availableDragons.filter((dragon) => dragon.id === dragonId);
+
+  setTimeout(() => (foundDragon
+    ? resolve({ data: { id: dragonId } })
+    : reject(new Error(`The Dragon with id: '${dragonId}' was not found`))), 2500);
+});
+
+/** ===================================================
+ *  asyncThunk to reserve a Dragon
+ *  =================================================== */
+const reserveDragon = createAsyncThunk(
+  RESERVE_DRAGON,
+  async (dragonId, thunkAPI) => {
+    try {
+      const resp = await dragonExists(dragonId, thunkAPI);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+/** ===================================================
+*  asyncThunk to cancel a reserve for a Dragon
+*  =================================================== */
+const cancelReservedDragon = createAsyncThunk(
+  CANCEL_RESERVED_DRAGON,
+  async (dragonId, thunkAPI) => {
+    try {
+      const resp = await dragonExists(dragonId, thunkAPI);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+/** ===================================================
  *  Initial state for dragons
  *  =================================================== */
 const initialState = {
   available: [],
-  isLoading: false,
+  status: { type: 'idle' },
   error: null,
 };
 
@@ -34,14 +78,14 @@ const initialState = {
  *  Define reducer for dragons
  *  =================================================== */
 const dragonsSlice = createSlice({
-  name: FETCH_DRAGONS,
+  name: 'dragons',
   initialState,
   extraReducers: (builder) => builder
     .addCase(
       fetchDragons.pending,
       (state) => ({
         ...state,
-        isLoading: true,
+        status: { type: 'loading' },
         error: null,
       }),
     )
@@ -64,7 +108,7 @@ const dragonsSlice = createSlice({
         return ({
           ...state,
           available: fetchedDragons,
-          isLoading: false,
+          status: { type: 'idle' },
         });
       },
     )
@@ -72,8 +116,78 @@ const dragonsSlice = createSlice({
       fetchDragons.rejected,
       (state, { payload }) => ({
         ...state,
+        status: { type: 'idle' },
         error: payload,
-        isLoading: false,
+      }),
+    )
+    .addCase(
+      reserveDragon.pending,
+      (state, { meta: { arg } }) => ({
+        ...state,
+        status: { type: 'booking', id: arg },
+        error: null,
+      }),
+    )
+    .addCase(
+      reserveDragon.fulfilled,
+      (state, { payload: { id } }) => {
+        const newDragons = state.available.map(
+          (dragon) => (dragon.id !== id
+            ? dragon
+            : ({
+              ...dragon,
+              reserved: true,
+            })),
+        );
+
+        return ({
+          ...state,
+          status: { type: 'idle' },
+          available: newDragons,
+        });
+      },
+    )
+    .addCase(
+      reserveDragon.rejected,
+      (state, { payload }) => ({
+        ...state,
+        status: { type: 'idle' },
+        error: payload,
+      }),
+    )
+    .addCase(
+      cancelReservedDragon.pending,
+      (state, { meta: { arg } }) => ({
+        ...state,
+        status: { type: 'canceling', id: arg },
+        error: null,
+      }),
+    )
+    .addCase(
+      cancelReservedDragon.fulfilled,
+      (state, { payload: { id } }) => {
+        const newDragons = state.available.map(
+          (dragon) => (dragon.id !== id
+            ? dragon
+            : ({
+              ...dragon,
+              reserved: false,
+            })),
+        );
+
+        return ({
+          ...state,
+          status: { type: 'idle' },
+          available: newDragons,
+        });
+      },
+    )
+    .addCase(
+      cancelReservedDragon.rejected,
+      (state, { payload }) => ({
+        ...state,
+        status: { type: 'idle' },
+        error: payload,
       }),
     ),
 });
@@ -89,13 +203,20 @@ export const selectDragonById = (store, dragonId) => (
   store.dragons.available
     .filter((dragon) => dragon.id === dragonId)
 );
-export const selectIsLoading = (store) => (store.dragons.isLoading);
-export const selectError = (store) => (store.dragons.error);
+export const selectIsIdle = ({ dragons: { status: { type } } }) => (type === 'idle');
+export const selectIsLoading = ({ dragons: { status: { type } } }) => (type === 'loading');
+export const selectIsBooking = ({ dragons: { status: { type, id } } }, dragonId) => (
+  type === 'booking' && id === dragonId
+);
+export const selectIsCanceling = ({ dragons: { status: { type, id } } }, dragonId) => (
+  type === 'canceling' && id === dragonId
+);
+export const selectError = ({ dragons: { error } }) => (error);
 
 /** ===================================================
  *  Export fetchDragons action
  *  =================================================== */
-export { fetchDragons };
+export { fetchDragons, reserveDragon, cancelReservedDragon };
 
 /** ===================================================
  *  Export dragons reducer as default
