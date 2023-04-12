@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import Navigation from "../components/Navigation";
+import Navigation from '../components/Navigation';
 
 // mock Redux store
 const store = {
@@ -24,7 +24,7 @@ test('Should render the Navigation component', () => {
       <MemoryRouter>
         <Navigation />
       </MemoryRouter>
-    </Provider>
+    </Provider>,
   );
   const logoElement = getByAltText(/Logo/i);
   expect(logoElement).toBeInTheDocument();
