@@ -85,9 +85,27 @@ h2 {
   color: #fff;
 }
 
+.dragon-info h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dragon-info .tag {
+  display: inline-block;
+  font-weight: normal;
+  font-size: medium;
+  padding: 0.15rem 0.4rem;
+  text-align: center;
+}
+
 .btn {
   padding: 0.5rem;
+  min-inline-size: 8.5rem;
   border-radius: 10px;
+  transition:
+    background-color 200ms ease-out,
+    border 200ms ease;
 }
 
 .reserve-rocket-btn {
@@ -100,4 +118,45 @@ h2 {
   background-color: #fff;
   border: 1px solid gray;
   color: gray;
+}
+
+.btn-dragon {
+  border: 1px solid transparent;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.btn-reserve {
+  background-color: #007bff;
+}
+
+.btn-reserve:hover {
+  background-color: #18a2b8;
+  border: 1px solid black;
+}
+
+.btn-cancel {
+  background-color: gray;
+}
+
+.btn-cancel:hover {
+  background-color: #ee4646;
+  border: 1px solid black;
+}
+
+.dragon-target {
+  display: inline-block;
+  margin: 0;
+  padding: 0.35rem 1.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  background-color: #0eb9fd;
+  animation: targeting 1s ease-in-out infinite;
+}
+
+@keyframes targeting {
+  from { background-color: #0eb9fd; }
+  to { background-color: #ace7ff; }
 }
