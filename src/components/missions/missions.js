@@ -1,7 +1,6 @@
-import React from 'react';
-
 const Missions = () => (
-  <div>Missions</div>
+  <h1>Here are  the missions </h1>
+
 );
 
 export default Missions;
