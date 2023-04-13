@@ -3,7 +3,7 @@ import {
   selectAllDragonsIds,
   selectError,
   selectIsLoading,
-} from '../redux/dragons/dragonsSlice';
+} from '../../redux/dragons/dragonsSlice';
 import Dragon from './Dragon';
 
 const Dragons = () => {
