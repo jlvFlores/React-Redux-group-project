@@ -1,3 +1,166 @@
+ mission-setup
 .hello {
   color: red;
+}
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+header,
+.logo-divider,
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid gray;
+}
+
+.logo {
+  width: 5vw;
+  aspect-ratio: 1 / 1;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 0 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.rockets-section,
+.dragons-section {
+  padding: 0 2rem;
+}
+
+.rocket-card,
+.dragon-card {
+  display: flex;
+  column-gap: 1rem;
+  margin: 1rem 0;
+}
+
+.rocket-image,
+.dragon-image {
+  max-height: 250px;
+  aspect-ratio: 4 / 3;
+}
+
+.rocket-info,
+.dragon-info {
+  text-align: start;
+}
+
+h2 {
+  margin: 0;
+}
+
+.tag {
+  background-color: #18a2b8;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.dragon-info h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dragon-info .tag {
+  display: inline-block;
+  font-weight: normal;
+  font-size: medium;
+  padding: 0.15rem 0.4rem;
+  text-align: center;
+}
+
+.btn {
+  padding: 0.5rem;
+  min-inline-size: 8.5rem;
+  border-radius: 10px;
+  transition:
+    background-color 200ms ease-out,
+    border 200ms ease;
+}
+
+.reserve-rocket-btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.cancel-reserve-rocket-btn {
+  background-color: #fff;
+  border: 1px solid gray;
+  color: gray;
+}
+
+.btn-dragon {
+  border: 1px solid transparent;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.btn-reserve {
+  background-color: #007bff;
+}
+
+.btn-reserve:hover {
+  background-color: #18a2b8;
+  border: 1px solid black;
+}
+
+.btn-cancel {
+  background-color: gray;
+}
+
+.btn-cancel:hover {
+  background-color: #ee4646;
+  border: 1px solid black;
+}
+
+.dragon-target {
+  display: inline-block;
+  margin: 0;
+  padding: 0.35rem 1.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  background-color: #0eb9fd;
+  animation: targeting 1s ease-in-out infinite;
+}
+
+@keyframes targeting {
+  from { background-color: #0eb9fd; }
+  to { background-color: #ace7ff; }
 }
