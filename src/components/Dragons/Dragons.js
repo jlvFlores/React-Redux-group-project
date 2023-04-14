@@ -17,6 +17,11 @@ const Dragons = () => {
 
   return (
     <section className="dragons-section">
+      { dragonsIds.length === 0 && (
+        <div>
+          <h3>There are no Dragons</h3>
+        </div>
+      )}
       { dragonsIds.map((dragonId) => (
         <Dragon
           key={dragonId}
