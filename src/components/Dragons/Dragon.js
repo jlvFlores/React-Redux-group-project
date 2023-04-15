@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   cancelReservedDragon, reserveDragon, selectDragonById, selectIsBooking, selectIsCanceling,
-} from '../redux/dragons/dragonsSlice';
+} from '../../redux/dragons/dragonsSlice';
 
 const Dragon = ({ id }) => {
   const [dragon] = useSelector((store) => selectDragonById(store, id));

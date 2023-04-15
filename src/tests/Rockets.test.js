@@ -26,7 +26,8 @@ describe('Rockets component', () => {
     useSelector.mockReturnValue({
       rockets: [
         {
-          id: 'falcon9',
+          id: 4,
+          rocket_id: 'falcon9',
           rocket_name: 'Falcon 9',
           description: 'A two-stage rocket designed and manufactured by SpaceX.',
           flickr_images: ['https://farm1.staticflickr.com/929/28787338307_3453a11a77_b.jpg'],

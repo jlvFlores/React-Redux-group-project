@@ -6,7 +6,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import Rockets from './components/Rockets';
 import Missions from './components/Missions';
-import Dragons from './components/Dragons';
+import Dragons from './components/Dragons/Dragons';
 import Profile from './components/Profile';
 
 const router = createBrowserRouter([
