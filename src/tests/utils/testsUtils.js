@@ -15,7 +15,7 @@ const renderWithProviders = (
     ...renderOptions
   } = {},
 ) => {
-  const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
+  const Wrapper = ({ children }) => (<Provider store={store}>{children}</Provider>);
 
   Wrapper.propTypes = {
     children: PropTypes.element.isRequired,
